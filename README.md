@@ -88,7 +88,6 @@ Or add it to .bahrc file and source it(preffered)
 * `rosmsg show std_msgs/String` the output of this command wiill be string data it is is the containt of it.
 * To listen a topic and what is send to it `rostopic echo /chatter`
 
-
 ### Rostopic with turtlesim
 
 * Run `rosrun turtlesim turtlesim_node`
@@ -195,3 +194,79 @@ Or add it to .bahrc file and source it(preffered)
 
   ```
 * We will write a code the turtle have to go and when it will near the wall it will be turn smoothly and complete going.
+
+## Understand what is ROS Service
+
+We have topics to communicate between node but we want a kind of client server interaction . A node have to be able to send a request to anathor node and the other node response.
+
+* Run `roscore`
+* Run `rosrun rospy_tutorials add_two_ints_server` it seems not do anything
+* Run in other terminal `rosservice list` this will has output as follow:
+
+  ```
+  /add_two_ints
+  /add_two_ints_server/get_loggers
+  /add_two_ints_server/set_logger_level
+  /rosout/get_loggers
+  /rosout/set_logger_level
+
+  ```
+* Run `rosservice info /add_two_ints` the output will be as follow:
+
+  ```
+  Node: /add_two_ints_server
+  URI: rosrpc://ubuntu:33689
+  Type: rospy_tutorials/AddTwoInts
+  Args: a b
+  ```
+
+  This mean that this service is advertised by the add_two_ints_server node. and have input arguments a and b
+* Let's send a client request by running `rosservice call /add_two_ints "a: 4 b: 2"` the output will be `sum:6` and you will be able to see in window we run the service this output : `Returning [4 + 2 = 6]`
+* You can run the following command to show the message data type : `rossrv show rospy_tutorials/AddTwoInts` this will return
+
+  ```
+  int64 a
+  int64 b
+  ---
+  int64 sum
+  ```
+
+### Let's try it with turtlesim
+
+* Close the service before and Run `rosrun turtlesim turtlesim_node`
+* list the rosservice by `rosservice list` the output will be
+
+  ```
+  /clear
+  /kill
+  /reset
+  /rosout/get_loggers
+  /rosout/set_logger_level
+  /spawn
+  /turtle1/set_pen
+  /turtle1/teleport_absolute
+  /turtle1/teleport_relative
+  /turtlesim/get_loggers
+  /turtlesim/set_logger_level
+
+  ```
+* Let's run `rosservice info /turtle1/set_pen` to take a look to set_pen. output will be:
+
+  ```
+  Node: /turtlesim
+  URI: rosrpc://ubuntu:40265
+  Type: turtlesim/SetPen
+  Args: r g b width off
+  ```
+* Run `rossrv show turtlesim/SetPen` to get info about the message type. Output will be:
+
+  ```
+  uint8 r
+  uint8 g
+  uint8 b
+  uint8 width
+  uint8 off
+  ```
+* Let's change the color of the white  line that appear back to the turtle when turtle run. First run `rosrun turtlesim turtle_teleop_key` and move the turtle to see the white line. Than run `rosservice call /turtle1/set_pen "{r: 255, g: 0, b: 0, width: 4, 'off': 0}"` to make the line red and move the turtle and see it.
+* Remind that you can't see services in rqt_graph
+* You can use topics when you need to fast data like velocity , services will be usable to request a data that is required in a specific time
