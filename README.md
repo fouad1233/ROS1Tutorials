@@ -67,3 +67,5 @@ Or add it to .bahrc file and source it(preffered)
 * run it with `python3 my_first_node.py`
 * Because it is executable you can also run it `./my_first_node.py`
 * Go to home directory with `cd` than run `rosrun my_robot_controller my_first_node.py`
+* You can use `rosnode list` command to list ros nodes
+* You can use `rosnode kill/<node_name>` for us it will be `rosnode kill /test_node`

@@ -3,13 +3,13 @@ import rospy
 
 if __name__ == '__main__':
     rospy.init_node('test_node')
-    rospy.loginfo("Hello World!")
-    rospy.logwarn("This is a warning!")
-    rospy.logerr("This is an error!")
+    rospy.loginfo("Test node has been started.")
+    #rospy Rate is a class that is used to define frequency for a loop
+    rate = rospy.Rate(10)
     
-    rospy.sleep(1.0)
-    
-    rospy.loginfo("End of the program")
-    
+    while not rospy.is_shutdown():
+        rospy.loginfo("Hello ROS!")
+        #rate.sleep() will make sure that loop runs at 10Hz
+        rate.sleep()
     
     
