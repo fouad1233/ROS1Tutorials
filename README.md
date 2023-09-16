@@ -270,3 +270,15 @@ We have topics to communicate between node but we want a kind of client server i
 * Let's change the color of the white  line that appear back to the turtle when turtle run. First run `rosrun turtlesim turtle_teleop_key` and move the turtle to see the white line. Than run `rosservice call /turtle1/set_pen "{r: 255, g: 0, b: 0, width: 4, 'off': 0}"` to make the line red and move the turtle and see it.
 * Remind that you can't see services in rqt_graph
 * You can use topics when you need to fast data like velocity , services will be usable to request a data that is required in a specific time
+
+## Write a ROS Service Client with python
+
+* First take a look previews tutorial.
+* We will split the screen to 2 the left side will be use red pen , in the right side green pin.
+* rewrite turtle_controller.py by adding a service waite and rename it turtle_controller_service.py and make it executable using `chmod +x turtle_controller_service.py`
+* To show the frequency of a topic you can write
+
+  ```
+  rostopic hz <topicname>
+  ```
+  for us it will be `rostopic hz /turtle1/pose`
