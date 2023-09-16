@@ -105,5 +105,53 @@ Or add it to .bahrc file and source it(preffered)
   float32 linear_velocity
   float32 angular_velocity
   ```
+
   This is the data inside the message
 * To listen the topic `rostopic echo /turtle1/pose`
+
+## Write a ROS publisher with python
+
+* `cd ~/ROS1Tutorials/catkin_ws/src/my_robot_controller/scripts/`
+* Create a new python file `touch draw_circle.py`
+* make it executable `chmod +x draw_circle.py`
+* `rosrun turtlesim turtlesim_node`
+* Run `rostopic list` this will give the following output
+
+  ```
+  /rosout
+  /rosout_agg
+  /turtle1/cmd_vel
+  /turtle1/color_sensor
+  /turtle1/pose
+  ```
+* Get topic info bu running `rostopic info /turtle1/cmd_vel` this will give this output
+
+  ```
+  Type: geometry_msgs/Twist
+
+  Publishers: None
+
+  Subscribers: 
+   * /turtlesim (http://ubuntu:32789/)
+  ```
+* Take a look to message data by running `rosmsg show geometry_msgs/Twist ` that will show
+
+  ```
+  rosmsg show geometry_msgs/Twist
+  geometry_msgs/Vector3 linear
+    float64 x
+    float64 y
+    float64 z
+  geometry_msgs/Vector3 angular
+    float64 x
+    float64 y
+    float64 z
+  ```
+* Add geometry_msgs to dependencies inside package.xml
+
+  ```
+  <build_depend>geometry_msgs</build_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  ```
+* Than run the drawcircle.py file
