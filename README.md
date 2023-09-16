@@ -183,3 +183,15 @@ Or add it to .bahrc file and source it(preffered)
 
   ```
 * Run you script and you can run `rosrun turtlesim turtle_teleop_key` for test it
+
+## Combine Publisher and Subscriber in a closed loop system
+
+* Let's write a new file
+
+  ```
+  cd ~/ROS1Tutorials/catkin_ws/src/my_robot_controller/scripts
+  touch turtle_controller.py
+  chmod +x turtle_controller.py 
+
+  ```
+* We will write a code the turtle have to go and when it will near the wall it will be turn smoothly and complete going.
