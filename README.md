@@ -69,3 +69,41 @@ Or add it to .bahrc file and source it(preffered)
 * Go to home directory with `cd` than run `rosrun my_robot_controller my_first_node.py`
 * You can use `rosnode list` command to list ros nodes
 * You can use `rosnode kill/<node_name>` for us it will be `rosnode kill /test_node`
+
+  ## ROS Topic
+* Run `roscore` if we run `rosrun rospy_tutorials talker` and `rosrun rospy_tutorials talker`
+* `rostopic list` list your topics you will have the chatter topic you can see it also with `rqt_graph`
+* To get info about the topic run `rostopic info /chatter` this will give you the following output
+
+  ```
+  Type: std_msgs/String
+
+  Publishers: 
+   * /talker_66445_1694860591067 (http://ubuntu:43059/)
+
+  Subscribers: 
+   * /listener_66698_1694860618145 (http://ubuntu:42305/)
+
+  ```
+* `rosmsg show std_msgs/String` the output of this command wiill be string data it is is the containt of it.
+* To listen a topic and what is send to it `rostopic echo /chatter`
+
+
+### Rostopic with turtlesim
+
+* Run `rosrun turtlesim turtlesim_node`
+* To draw square `rosrun turtlesim draw_square`
+* run `rqt_graph` ![1694862683096](image/README/1694862683096.png)
+* `rostopic list`
+* `rostopic info /turtle1/pose`
+* Run `rosmsg show turtlesim/Pose` you will get output
+
+  ```
+  float32 x
+  float32 y
+  float32 theta
+  float32 linear_velocity
+  float32 angular_velocity
+  ```
+  This is the data inside the message
+* To listen the topic `rostopic echo /turtle1/pose`
