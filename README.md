@@ -155,3 +155,31 @@ Or add it to .bahrc file and source it(preffered)
   <exec_depend>geometry_msgs</exec_depend>
   ```
 * Than run the drawcircle.py file
+
+## Write a ROS subscriber with python
+
+* Run `roscore`
+* Run the turtlesim node `rosrun turtlesim turtlesim_node`
+* Run `rostopic list `will give you the following topics
+
+  ```
+  /rosout
+  /rosout_agg
+  /turtle1/cmd_vel
+  /turtle1/color_sensor
+  /turtle1/pose
+  ```
+* Run `rostopic info /turtle1/pose ` give you:
+
+  ```
+  Type: turtlesim/PosePublishers:/turtlesim (http://ubuntu:39733/)Subscribers: None
+  ```
+* So we can write a subscriber that subscriber to this topic
+
+  ```
+  cd ~/ROS1Tutorials/catkin_ws/src/my_robot_controller/scripts
+  touch pose_subscriber.py
+  chmod +x pose_subscriber.py 
+
+  ```
+* Run you script and you can run `rosrun turtlesim turtle_teleop_key` for test it
