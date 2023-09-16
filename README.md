@@ -32,3 +32,13 @@ Or add it to .bahrc file and source it(preffered)
 * First go to home directory by typing `cd`.
 * Add it to .bashrc using `gedit ~/.bashrc`
 * Save and source .bashrc using   `source ~/.bashrc`
+
+
+## Create a Ros Package
+
+* Go to source folder `cd ~/ROS1Tutorials/catkin_ws/src`
+* To create a package you have to write `catkin_create_pkg <package name> < dependecies>` in our case we will create like this `catkin_create_pkg my_robot_controller rospy turtlesim`
+* Inside source my_robot_controller package is created. Inside it you can see CMakeLists.txt file this file help us to create excutables and compile code for C++ And with ROS it also help us to create custom ros messages
+* Let's explain packae.xml you can take a look to default comments to add ad depend later you can it like `<exec_depend>turtlesim</exec_depend>`
+* After any change you do you have to go the the workspace main folder directory here it is catkin_ws and build it using `catkin_make` command
+* if you go inside build you will have to see a folder named my_robot_controller
